@@ -1,0 +1,30 @@
+# ==========================================
+# Config for FarmHand
+# created by Techzune
+# ==========================================
+
+# DO NOT CHANGE THIS, PLEASE! (it would make me sad)
+configVersion: 1
+
+# ==========================================
+#   GENERAL
+# ==========================================
+
+# if true, drops will only occur if the item in hand
+#   is any of the items in "acceptableTools"
+#   DEFAULT: false
+acceptableToolsOnly: false
+acceptableTools:
+  - AIR
+  - WOODEN_HOE
+  - IRON_HOE
+  - GOLDEN_HOE
+  - DIAMOND_HOE
+
+# simulate the player breaking the block to check permissions
+#   DEFAULT: true
+checkPermissionsToBreak: true
+
+# replant seed when a crop is harvested
+#   DEFAULT: true
+replantSeeds: true
