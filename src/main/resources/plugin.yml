@@ -1,0 +1,6 @@
+name: FarmHand
+description: Pick crops with just your hand!
+version: 1.0
+main: com.jordanstremming.farmhand.FarmHand
+
+api-version: 1.13
