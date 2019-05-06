@@ -42,41 +42,39 @@ public class BlockListener implements Listener {
 		if (!(block.getState().getData() instanceof Crops)) return;
 		Crops crops = (Crops) block.getState().getData();
 
-		// handle ripe crops
-		if (crops.getState() == CropState.RIPE) {
+		// handle only ripe crops
+		if (crops.getState() != CropState.RIPE) return;
 
-			// if specified, make sure acceptable tool is used
-			if (plugin.getConfig().getBoolean("acceptableToolsOnly")) {
+		// if specified, make sure acceptable tool is used
+		if (plugin.getConfig().getBoolean("acceptableToolsOnly")) {
 
-				// check main hand tool
-				String handTool = player.getInventory().getItemInMainHand().getType().toString();
-				if (!plugin.getConfig().getStringList("acceptableTools").contains(handTool)) {
-					// cancel if not acceptable
-					return;
-				}
-
+			// check main hand tool
+			String handTool = player.getInventory().getItemInMainHand().getType().toString();
+			if (!plugin.getConfig().getStringList("acceptableTools").contains(handTool)) {
+				// cancel if not acceptable
+				return;
 			}
 
-			// store the material and drops
-			Material cropType = crops.getItemType();
-
-			// check block permissions
-			if (plugin.getConfig().getBoolean("checkPermissionsToBreak")) {
-				BlockBreakEvent blockBreakEvent = new BlockBreakEvent(block, player);
-				plugin.getServer().getPluginManager().callEvent(blockBreakEvent);
-				if (blockBreakEvent.isCancelled()) return;
-			}
-
-			// break the crop
-			block.breakNaturally();
-
-			// change to seeded type
-			if (plugin.getConfig().getBoolean("replantSeeds")) {
-				block.setType(cropType);
-				crops.setState(CropState.SEEDED);
-			}
 		}
 
+		// store the material and drops
+		Material cropType = crops.getItemType();
+
+		// check block permissions
+		if (plugin.getConfig().getBoolean("checkPermissionsToBreak")) {
+			BlockBreakEvent blockBreakEvent = new BlockBreakEvent(block, player);
+			plugin.getServer().getPluginManager().callEvent(blockBreakEvent);
+			if (blockBreakEvent.isCancelled()) return;
+		}
+
+		// break the crop
+		block.breakNaturally();
+
+		// change to seeded type
+		if (plugin.getConfig().getBoolean("replantSeeds")) {
+			block.setType(cropType);
+			crops.setState(CropState.SEEDED);
+		}
 	}
 
 }
