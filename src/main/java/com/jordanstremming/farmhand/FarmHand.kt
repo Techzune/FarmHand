@@ -4,15 +4,6 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class FarmHand : JavaPlugin() {
 
-	// keep an instance of the plugin
-	init {
-		instance = this
-	}
-
-	companion object {
-		lateinit var instance: FarmHand
-	}
-
 	// store the plugin's config
 	lateinit var pluginConfig: Config
 
@@ -29,6 +20,15 @@ class FarmHand : JavaPlugin() {
 
 	override fun onDisable() {
 		logger.info("FarmHand says goodbye...")
+	}
+
+	// keep an instance of the plugin
+	init {
+		instance = this
+	}
+
+	companion object {
+		lateinit var instance: FarmHand
 	}
 
 }
