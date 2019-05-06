@@ -10,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Crops;
 
 public class BlockListener implements Listener {
@@ -21,36 +20,26 @@ public class BlockListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 
 		// check if the event has been cancelled
-		if (event.isCancelled()) {
-			return;
-		}
+		if (event.isCancelled()) return;
 
 		// only handle block interactions
-		if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-			return;
-		}
+		if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 
-		// store player
+		// get player
 		Player player = event.getPlayer();
 
 		// ignore sneaking player
-		if (player.isSneaking()) {
-			return;
-		} else {
-			// prevent placing blocks
-			event.setUseItemInHand(Event.Result.DENY);
-		}
+		if (player.isSneaking()) return;
+
+		// prevent placing blocks
+		event.setUseItemInHand(Event.Result.DENY);
 
 		// get the clicked block
 		Block block = event.getClickedBlock();
-		if (block == null) {
-			return;
-		}
+		if (block == null) return;
 
 		// convert the block into "Crops"
-		if (!(block.getState().getData() instanceof Crops)) {
-			return;
-		}
+		if (!(block.getState().getData() instanceof Crops)) return;
 		Crops crops = (Crops) block.getState().getData();
 
 		// handle ripe crops
@@ -58,12 +47,14 @@ public class BlockListener implements Listener {
 
 			// if specified, make sure acceptable tool is used
 			if (plugin.getConfig().getBoolean("acceptableToolsOnly")) {
-				// check main hand
-				ItemStack hand = player.getInventory().getItemInMainHand();
-				if (!plugin.getConfig().getStringList("acceptableTools").contains(hand.getType().toString())) {
+
+				// check main hand tool
+				String handTool = player.getInventory().getItemInMainHand().getType().toString();
+				if (!plugin.getConfig().getStringList("acceptableTools").contains(handTool)) {
 					// cancel if not acceptable
 					return;
 				}
+
 			}
 
 			// store the material and drops
@@ -73,9 +64,7 @@ public class BlockListener implements Listener {
 			if (plugin.getConfig().getBoolean("checkPermissionsToBreak")) {
 				BlockBreakEvent blockBreakEvent = new BlockBreakEvent(block, player);
 				plugin.getServer().getPluginManager().callEvent(blockBreakEvent);
-				if (blockBreakEvent.isCancelled()) {
-					return;
-				}
+				if (blockBreakEvent.isCancelled()) return;
 			}
 
 			// break the crop
