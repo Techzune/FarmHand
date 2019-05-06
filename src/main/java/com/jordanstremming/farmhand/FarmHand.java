@@ -30,7 +30,7 @@ public class FarmHand extends JavaPlugin {
 		saveDefaultConfig();
 	}
 
-	public static FarmHand getPlugin() {
+	static FarmHand getPlugin() {
 		return instance;
 	}
 }
