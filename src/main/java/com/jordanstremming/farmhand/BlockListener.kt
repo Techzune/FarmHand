@@ -12,6 +12,7 @@ import org.bukkit.material.Crops
 
 class BlockListener : Listener {
 
+	// store plugin instances
 	private val plugin = FarmHand.instance
 	private val config = plugin.pluginConfig
 
