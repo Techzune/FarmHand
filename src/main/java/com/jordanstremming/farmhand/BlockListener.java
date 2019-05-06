@@ -15,7 +15,7 @@ import org.bukkit.material.Crops;
 
 public class BlockListener implements Listener {
 
-	private FarmHand plugin = FarmHand.getPlugin();
+	private final FarmHand plugin = FarmHand.getPlugin();
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
