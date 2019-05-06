@@ -1,6 +1,6 @@
-name: FarmHand
+name: @artifactId@
 description: Pick crops with just your hand!
-version: 1.0
+version: @version@
 main: com.jordanstremming.farmhand.FarmHand
 
 api-version: 1.13
