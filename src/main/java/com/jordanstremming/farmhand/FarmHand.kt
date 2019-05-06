@@ -4,15 +4,12 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class FarmHand : JavaPlugin() {
 
-	// store the plugin's config
-	lateinit var pluginConfig: Config
+	// the plugin's config
+	val pluginConfig: Config = Config()
 
 	override fun onEnable() {
 		// register events
 		server.pluginManager.registerEvents(BlockListener(), this)
-
-		// load configuration
-		pluginConfig = config as Config
 
 		// yay!
 		logger.info("FarmHand is ready to go!")

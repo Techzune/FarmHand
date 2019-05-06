@@ -12,9 +12,10 @@ import org.bukkit.material.Crops
 
 class BlockListener : Listener {
 
-	// store plugin instances
+	// plugin instances
 	private val plugin = FarmHand.instance
-	private val config = plugin.pluginConfig
+	private val config
+		get() = plugin.pluginConfig
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	fun onPlayerInteract(event: PlayerInteractEvent) {
