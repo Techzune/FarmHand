@@ -56,7 +56,7 @@ public class BlockListener implements Listener {
 		// handle ripe crops
 		if (crops.getState() == CropState.RIPE) {
 
-			// if specified, make sure acecptable tool is used
+			// if specified, make sure acceptable tool is used
 			if (plugin.getConfig().getBoolean("acceptableToolsOnly")) {
 				// check main hand
 				ItemStack hand = player.getInventory().getItemInMainHand();
