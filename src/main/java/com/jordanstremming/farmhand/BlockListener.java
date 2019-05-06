@@ -32,9 +32,6 @@ public class BlockListener implements Listener {
 		// ignore sneaking player
 		if (player.isSneaking() && plugin.getConfig().getBoolean("ignoreSneaking")) return;
 
-		// prevent placing blocks
-		event.setUseItemInHand(Event.Result.DENY);
-
 		// get the clicked block
 		Block block = event.getClickedBlock();
 		if (block == null) return;
@@ -48,7 +45,7 @@ public class BlockListener implements Listener {
 
 		// if specified, make sure acceptable crop is harvested
 		if (plugin.getConfig().getBoolean("acceptableCropsOnly")) {
-			if(!plugin.getConfig().getStringList("acceptableCrops").contains(crops.getItemType().toString())){
+			if (!plugin.getConfig().getStringList("acceptableCrops").contains(block.getType().toString())) {
 				// cancel if not acceptable crop
 				return;
 			}
@@ -75,6 +72,9 @@ public class BlockListener implements Listener {
 			plugin.getServer().getPluginManager().callEvent(blockBreakEvent);
 			if (blockBreakEvent.isCancelled()) return;
 		}
+
+		// prevent placing blocks
+		event.setUseItemInHand(Event.Result.DENY);
 
 		// break the crop
 		block.breakNaturally();
