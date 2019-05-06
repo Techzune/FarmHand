@@ -6,12 +6,32 @@
 # DO NOT CHANGE THIS, PLEASE! (it would make me sad)
 configVersion: 1
 
+
+
 # ==========================================
 #   GENERAL
 # ==========================================
 
-# if true, drops will only occur if the item in hand
-#   is any of the items in "acceptableTools"
+# simulate the player breaking the block to check permissions
+#   DEFAULT: true
+checkPermissionsToBreak: true
+
+# don't harvest the crop while player is sneaking
+#   DEFAULT: true
+ignoreSneaking: true
+
+# replant seed when a crop is harvested
+#   DEFAULT: true
+replantSeeds: true
+
+
+
+# ==========================================
+#   LIMITS
+# ==========================================
+
+# if true, harvest will only occur if the item in hand
+#   is any of the items listed in "acceptableTools"
 #   DEFAULT: false
 acceptableToolsOnly: false
 acceptableTools:
@@ -21,14 +41,9 @@ acceptableTools:
   - GOLDEN_HOE
   - DIAMOND_HOE
 
-# simulate the player breaking the block to check permissions
-#   DEFAULT: true
-checkPermissionsToBreak: true
-
-# replant seed when a crop is harvested
-#   DEFAULT: true
-replantSeeds: true
-
-# don't pick the crop while player is sneaking
-#   DEFAULT: true
-ignoreSneaking: true
+# if true, harvest will only occur if the crop picked
+#   is any of the crops listed in "acceptableCrops"
+#   DEFAULT: false
+acceptableCropsOnly: false
+acceptableCrops:
+  - WHEAT
