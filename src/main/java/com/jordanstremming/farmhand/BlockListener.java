@@ -30,7 +30,7 @@ public class BlockListener implements Listener {
 		Player player = event.getPlayer();
 
 		// ignore sneaking player
-		if (player.isSneaking()) return;
+		if (player.isSneaking() && plugin.getConfig().getBoolean("ignoreSneaking")) return;
 
 		// prevent placing blocks
 		event.setUseItemInHand(Event.Result.DENY);

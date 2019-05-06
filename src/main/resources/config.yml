@@ -28,3 +28,7 @@ checkPermissionsToBreak: true
 # replant seed when a crop is harvested
 #   DEFAULT: true
 replantSeeds: true
+
+# don't pick the crop while player is sneaking
+#   DEFAULT: true
+ignoreSneaking: true
