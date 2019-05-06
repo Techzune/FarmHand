@@ -5,24 +5,26 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- JAR Information -->
+    <!-- JAR information -->
     <groupId>com.jordanstremming</groupId>
     <artifactId>FarmHand</artifactId>
     <version>1.2.0</version>
 
     <properties>
+        <!-- File encodding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Compiler Versions -->
+        <!-- Compiler versions -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <kotlin.version>1.3.31</kotlin.version>
 
-        <!-- Spigot Version -->
+        <!-- Spigot version -->
         <spigot.version>1.14-pre5-SNAPSHOT</spigot.version>
     </properties>
 
     <repositories>
+        <!-- Spigot repo -->
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
@@ -30,6 +32,7 @@
     </repositories>
 
     <build>
+        <!-- Use Kotlin -->
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -49,6 +52,8 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <!-- Filter resources (apply variables) -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -58,12 +63,15 @@
     </build>
 
     <dependencies>
+        <!-- Spigot dependency -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>${spigot.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Kotlin dependency -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
