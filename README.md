@@ -1,5 +1,5 @@
 # FarmHand, a Spigot Minecraft plugin
-Harvest crops using your hand!
+Harvest crops without breaking them!
 
 ## Installation
 *Designed for Spigot 1.13.2+*  
