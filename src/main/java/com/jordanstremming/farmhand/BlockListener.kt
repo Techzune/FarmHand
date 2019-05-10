@@ -2,7 +2,6 @@ package com.jordanstremming.farmhand
 
 import com.jordanstremming.farmhand.crop.FarmCrop
 import com.jordanstremming.farmhand.crop.FarmCropState
-import com.jordanstremming.farmhand.crop.cropFromBlock
 import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -41,7 +40,7 @@ class BlockListener : Listener {
 		val blockType = block.type
 
 		// convert to FarmCrop
-		val crop: FarmCrop = cropFromBlock(block)
+		val crop: FarmCrop = FarmCrop.fromBlock(block)
 
 		// if valid and RIPE
 		if (!crop.valid || crop.state != FarmCropState.RIPE)

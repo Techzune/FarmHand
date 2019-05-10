@@ -20,11 +20,17 @@ interface FarmCrop {
      */
     var state: FarmCropState
 
-}
-
-fun cropFromBlock(block: Block): FarmCrop {
-    return when(block.type) {
-        Material.NETHER_WART -> CropNetherWarts(block)
-        else -> CropCrops(block)
+    /**
+     * static methods
+     */
+    companion object {
+        @JvmStatic
+        fun fromBlock(block: Block): FarmCrop {
+            return when(block.type) {
+                Material.NETHER_WART -> CropNetherWarts(block)
+                else -> CropCrops(block)
+            }
+        }
     }
 }
+

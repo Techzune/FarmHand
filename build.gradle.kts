@@ -1,5 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.apache.tools.ant.filters.ReplaceTokens
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.3.31"
@@ -10,8 +11,8 @@ group = "com.jordanstremming"
 version = "1.2.2"
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_5
-    targetCompatibility = JavaVersion.VERSION_1_5
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 repositories {
@@ -22,6 +23,10 @@ repositories {
 dependencies {
     compile(kotlin("stdlib"))
     compileOnly("org.bukkit:bukkit:1.13.2-R0.1-SNAPSHOT")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 tasks.withType<ShadowJar> {
