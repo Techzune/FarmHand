@@ -9,7 +9,7 @@ class CropCrops(override val block: Block) : FarmCrop {
     private val cropState = block.state.data as? Crops
 
     override val valid: Boolean
-        get() = cropState == null
+        get() = cropState != null
 
     override var state: FarmCropState
         set(newState) {
