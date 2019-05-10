@@ -1,6 +1,8 @@
 package com.jordanstremming.farmhand
 
-import org.bukkit.CropState
+import com.jordanstremming.farmhand.crop.FarmCrop
+import com.jordanstremming.farmhand.crop.FarmCropState
+import com.jordanstremming.farmhand.crop.cropFromBlock
 import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -8,7 +10,6 @@ import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.player.PlayerInteractEvent
-import org.bukkit.material.Crops
 
 class BlockListener : Listener {
 
@@ -39,14 +40,11 @@ class BlockListener : Listener {
 		val block = event.clickedBlock ?: return
 		val blockType = block.type
 
-		// convert the block into "Crops"
-		System.out.print(blockType)
-		System.out.println(" a Crops?")
-		val crops = block.state.data as? Crops ?: return
-		System.out.println("    It's a crop!")
+		// convert to FarmCrop
+		val crop: FarmCrop = cropFromBlock(block)
 
-		// handle only ripe crops
-		if (crops.state != CropState.RIPE)
+		// if valid and RIPE
+		if (!crop.valid || crop.state != FarmCropState.RIPE)
 			return
 
 		// if config, make sure acceptable crop is harvested
@@ -73,7 +71,7 @@ class BlockListener : Listener {
 		// if config, change block to seed
 		if (config.replantSeeds) {
 			block.type = blockType
-			crops.state = CropState.SEEDED
+			crop.state = FarmCropState.SEEDED
 		}
 	}
 

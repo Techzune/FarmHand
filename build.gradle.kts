@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.jordanstremming"
-version = "1.0.0"
+version = "1.2.2"
 
 java {
     targetCompatibility = JavaVersion.VERSION_1_5
