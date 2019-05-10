@@ -11,6 +11,9 @@ class FarmHand : JavaPlugin() {
 		// register events
 		server.pluginManager.registerEvents(BlockListener(), this)
 
+		// save config file
+		saveDefaultConfig()
+
 		// yay!
 		logger.info("FarmHand is ready to go!")
 	}
