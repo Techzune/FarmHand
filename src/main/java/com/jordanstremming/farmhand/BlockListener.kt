@@ -40,7 +40,10 @@ class BlockListener : Listener {
 		val blockType = block.type
 
 		// convert the block into "Crops"
+		System.out.print(blockType)
+		System.out.println(" a Crops?")
 		val crops = block.state.data as? Crops ?: return
+		System.out.println("    It's a crop!")
 
 		// handle only ripe crops
 		if (crops.state != CropState.RIPE)
